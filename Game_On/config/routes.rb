@@ -1,17 +1,23 @@
 Rails.application.routes.draw do
 
+  root 'main#index'
+
   get 'match' => 'match#index'
-  get 'profile' => 'user#index'
+  get 'profile' => 'profiles#index'
 
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroy', as: 'signout'
+  get 'signup' => 'users#new', as: :new_user
+  post 'signup' => 'users#create', as: :users
 
-  resources :sessions, only: [:create, :destroy]
-  resource :home, only: [:show]
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
+  # get 'auth/:provider/callback', to: 'sessions#create'
+  # get 'auth/failure', to: redirect('/')
+  # get 'signout', to: 'sessions#destroy', as: 'signout'
+  # resources :sessions, only: [:create, :destroy]
+  # resource :home, only: [:show]
 
   resources :games
-  resources :users
 
 
 
@@ -19,7 +25,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'main#index'
+  # root 'main#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

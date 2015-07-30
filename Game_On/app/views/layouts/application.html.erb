@@ -15,26 +15,20 @@
       <a href="#!" class="brand-logo">GameOn</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/match">Matches</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><div id="user-widget">
-              <% if current_user %>
-                Welcome <strong><%= current_user.name %></strong>!
-                <%= link_to "Sign out", signout_path, id: "sign_out" %>
-              <% else %>
-                <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-              <% end %></div></li>
+        <% if @current_user %>
+          <li><a href="/match">Matches</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><%= link_to "Log out",logout_path %></a></li>
+        <% else %>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Log In</a></li>
+        <% end %>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="/match">Matches</a></li>
         <li><a href="/profile">Profile</a></li>
         <li><div id="user-widget">
-              <% if current_user %>
-                Signed in as <strong><%= current_user.name %></strong>!
-                <%= link_to "Sign out", signout_path, id: "sign_out" %>
-              <% else %>
-                <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-              <% end %></div></li>
+          </div></li>
       </ul>
     </div>
 

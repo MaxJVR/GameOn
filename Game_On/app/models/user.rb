@@ -1,14 +1,20 @@
 class User < ActiveRecord::Base
 
-   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
-    end
+  has_secure_password
+
+  validates :email,
+  presence: true,
+  uniqueness: {case_sensitive: false},
+  format: {with: /@/}
+
+  def display_name
+    self.name || 'Anon'
+  end
+
+  # validates_presence_of :password, on: :create
+
+  def self.authenticate email, password
+    User.find_by_email(email).try(:authenticate, password)
   end
 
 end
