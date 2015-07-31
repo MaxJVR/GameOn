@@ -1,3 +1,7 @@
-<% @games.each do |game| %>
-  <%= show tag.name, tag %>
-<% end %>
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Update Your Games List</h4></li>
+  <% games.each do |g| %>
+  <li class="collection-item"><div><%= g.name %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+  <% end %>
+</ul>
+

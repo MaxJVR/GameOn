@@ -14,7 +14,9 @@
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Games List<i class="material-icons right">close</i></span>
-        <h6>games.list.all</h6>
+        <% Game.all do |game| %>
+          <h6><%= game.list %></h6>
+        <% end %>
       </div>
     </div>
   </div>

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create user_params
+    update_games @user
     if @user.persisted?
       redirect_to login_path
     else

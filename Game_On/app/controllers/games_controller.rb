@@ -1,15 +1,12 @@
 class GamesController < ApplicationController
 
-  def index
-    @games = Game.all
-  end
 
   def new
     @game = Game.new
   end
 
   def show
-    @game = Game.find(params[:id])
+     @games = Game.all
   end
 
   def create
@@ -19,7 +16,7 @@ class GamesController < ApplicationController
   def update
     g = Game.find params[:id]
     g.update game_params
-    redirect_to g
+
   end
 
   def edit
@@ -33,6 +30,14 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def update_games user
+    user_games = params[:user][:game_ids]
+    user_games.each do |id|
+      user.games << Game.find(id) unless id.blank?
+    end
+  end
+
   def game_params
     params.require(:game).permit(:name)
   end
