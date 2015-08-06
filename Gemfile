@@ -31,6 +31,8 @@ gem 'omniauth-facebook', '1.4.0'
 
 gem 'rails_12factor', group: :production
 
+gem 'cloudinary'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

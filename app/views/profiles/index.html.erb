@@ -10,12 +10,11 @@
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4"><%= current_user.name %><i class="material-icons right">games</i></span>
         <li class="collection-item">
-
+        <h6>Personal descripton goes here...blah blah blah lt;dr </h6>
         </li>
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Games List<i class="material-icons right">close</i></span>
-
           <% current_user.games.each do |game| %>
               <li><h6><%= game.name %></h6></li>
           <% end %>
